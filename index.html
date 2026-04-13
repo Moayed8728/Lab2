@@ -365,5 +365,14 @@
             if (agent.length > 55) agent = agent.slice(0, 52) + "...";
             userAgentSpan.textContent = agent;
         }
+        function addSampleNotes() {
+            if (notes.length === 0) {
+                notes.push(
+                    { id: nextId++, title: "Hello BOM", content: "Try resizing the window watch width/height update!" }, 
+            { id: nextId++, title: "Delete me", content: "Click delete and confirm the BOM confirm box." }
+                );
+                renderNotes();
+            }
+        }
     </script>
 </body>
