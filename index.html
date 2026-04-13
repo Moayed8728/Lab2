@@ -186,6 +186,13 @@
         hr {
             margin: 1rem 0;
         }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.7rem;
+            color: #5b6e8c;
+        }
     </style>
 </head>
 
@@ -233,6 +240,10 @@
                 <button id="clearAllBtn" style="background:#64748b;margin-top:0.8rem;">Clear all notes</button>
             </div>
         </div>
+
+        <footer>
+            💡 BOM: confirm() on delete · alert() on empty title · resize event updates window size.
+        </footer>
 
     </div>
     <script>
@@ -320,6 +331,7 @@
             contentInput.value = "";
             titleInput.focus();
         }
+
         function deleteNoteById(id) {
             // BOM: confirm() returns true/false
             const ok = confirm("Are you sure you want to delete this note?");
@@ -344,37 +356,50 @@
                 alert("All notes have been cleared.");
             }
         }
+
         function updateWindowSize() {
             const w = window.innerWidth;
             const h = window.innerHeight;
             windowSizeSpan.textContent = `${w} x ${h} px`;
         }
+
         window.addEventListener("resize", updateWindowSize);
+
         function showUserAgent() {
-            let agent = navigator.userAgent;
-            if (agent.length > 55) agent = agent.slice(0, 52) + "...";
-            userAgentSpan.textContent = agent;
+        let agent = navigator.userAgent;
+        if (agent.length > 55) agent = agent.slice(0, 52) + "...";
+        userAgentSpan.textContent = agent;
         }
+
         function addSampleNotes() {
             if (notes.length === 0) {
-                notes.push(
-                    { id: nextId++, title: "Hello BOM", content: "Try resizing the window watch width/height update!" }, 
-            { id: nextId++, title: "Delete me", content: "Click delete and confirm the BOM confirm box." }
-                );
-                renderNotes();
+                notes.push({
+                 id: nextId++,
+                 title: "Hello BOM",
+                 content: "Try resizing the window → watch width/height update!"
+            });
+            notes.push({
+                 id: nextId++,
+                title: "Delete me",
+                content: "Click delete and confirm."
+        });
+        renderNotes();
             }
         }
+
         function init() {
-  addSampleNotes();      // show demo notes first
-  updateWindowSize();    // show current browser size
-  showUserAgent();       // show browser user agent
+            addSampleNotes();
+            updateWindowSize();
+            showUserAgent();
 
-  addBtn.addEventListener("click", addNote);
-  clearAllBtn.addEventListener("click", clearAllNotes);
-}
+            addBtn.addEventListener("click", addNote);
+            clearAllBtn.addEventListener("click", clearAllNotes);
+        }
 
-init();
-        
+        init();
+
+        addBtn.addEventListener("click", addNote);
+        clearAllBtn.addEventListener("click", clearAllNotes);
         notesContainer.addEventListener("click", (e) => {
             const btn = e.target.closest('[data-action="delete"]');
             if (btn) {
@@ -382,7 +407,7 @@ init();
                 deleteNoteById(id);
             }
         });
-
-        
     </script>
 </body>
+</body>
+</html>
