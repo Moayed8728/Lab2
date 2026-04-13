@@ -309,7 +309,18 @@
 
         function addNote() {
             const title = titleInput.value.trim();
-            // BOM: alert() validation contentInput.value = "";
+            // BOM: alert() validation
+            if (title === "") {
+                alert("❌ Title cannot be empty!");
+                titleInput.focus();
+                return;
+            }
+            const content = contentInput.value.trim();
+            notes.push({ id: nextId++, title, content });
+            renderNotes();
+            // clear and refocus
+            titleInput.value = "";
+            contentInput.value = "";
             titleInput.focus();
         }
         function deleteNoteById(id) {
@@ -321,6 +332,19 @@
             if (index !== -1) {
                 notes.splice(index, 1);
                 renderNotes();
+            }
+        }
+        function clearAllNotes() {
+            if (notes.length === 0) {
+                alert("No notes to clear.");
+                return;
+            }
+            const ok = confirm(`Delete ALL ${notes.length} notes? Cannot be undone.`);
+            if (ok) {
+                notes = [];
+                nextId = 1;
+                renderNotes();
+                alert("All notes have been cleared.");
             }
         }
     </script>
