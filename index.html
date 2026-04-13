@@ -344,16 +344,6 @@
                 alert("All notes have been cleared.");
             }
         }
-        addBtn.addEventListener("click", addNote);
-        clearAllBtn.addEventListener("click", clearAllNotes);
-        notesContainer.addEventListener("click", (e) => {
-            const btn = e.target.closest('[data-action="delete"]');
-            if (btn) {
-                const id = parseInt(btn.getAttribute("data-id"), 10);
-                deleteNoteById(id);
-            }
-        });
-
         function updateWindowSize() {
             const w = window.innerWidth;
             const h = window.innerHeight;
@@ -374,5 +364,25 @@
                 renderNotes();
             }
         }
+        function init() {
+  addSampleNotes();      // show demo notes first
+  updateWindowSize();    // show current browser size
+  showUserAgent();       // show browser user agent
+
+  addBtn.addEventListener("click", addNote);
+  clearAllBtn.addEventListener("click", clearAllNotes);
+}
+
+init();
+        
+        notesContainer.addEventListener("click", (e) => {
+            const btn = e.target.closest('[data-action="delete"]');
+            if (btn) {
+                const id = parseInt(btn.getAttribute("data-id"), 10);
+                deleteNoteById(id);
+            }
+        });
+
+        
     </script>
 </body>
