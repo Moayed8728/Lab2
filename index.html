@@ -261,8 +261,8 @@
         </div>
 
         <footer>
-            💡 BOM: confirm() on delete · alert() on empty title · resize event updates window size · prompt() to rename.
             💡 BOM: confirm() on delete · alert() on empty title · resize event updates window size · prompt() to rename · Enter key to add.
+            💡 BOM: confirm() on delete · alert() on empty title · resize event updates window size · prompt() to rename · Enter key to add · screen-size category.
         </footer>
 
     </div>
@@ -313,18 +313,15 @@
                 const titleSpan = document.createElement("span");
                 titleSpan.textContent = note.title;
 
-                // Actions wrapper
                 const actionsDiv = document.createElement("div");
                 actionsDiv.classList.add("note-actions");
 
-                // Edit button
                 const editBtn = document.createElement("button");
                 editBtn.textContent = "✏ Edit";
                 editBtn.classList.add("edit-note");
                 editBtn.setAttribute("data-action", "edit");
                 editBtn.setAttribute("data-id", note.id);
 
-                // Delete button
                 const deleteBtn = document.createElement("button");
                 deleteBtn.textContent = "Delete";
                 deleteBtn.classList.add("delete-note");
@@ -377,7 +374,6 @@
         function editNoteById(id) {
             const found = notes.find(n => n.id === id);
             if (found) {
-                // BOM: prompt() returns new string or null
                 const newTitle = prompt("New title:", found.title);
                 if (newTitle !== null && newTitle.trim() !== "") {
                     found.title = newTitle.trim();
@@ -404,6 +400,11 @@
             const w = window.innerWidth;
             const h = window.innerHeight;
             windowSizeSpan.textContent = `${w} x ${h} px`;
+            let category;
+            if (w < 480) category = "📱📱 Mobile";
+            else if (w < 1024) category = "💻💻 Tablet";
+            else category = "🖥🖥 Desktop";
+            windowSizeSpan.textContent = `${w} x ${h} px (${category})`;
         }
 
         window.addEventListener("resize", updateWindowSize);
@@ -448,14 +449,12 @@
         init();
 
         notesContainer.addEventListener("click", (e) => {
-            // Handle delete
             const deleteTarget = e.target.closest('[data-action="delete"]');
             if (deleteTarget) {
                 const id = parseInt(deleteTarget.getAttribute("data-id"), 10);
                 deleteNoteById(id);
             }
 
-            // Handle edit
             const editTarget = e.target.closest('[data-action="edit"]');
             if (editTarget) {
                 const id = parseInt(editTarget.getAttribute("data-id"), 10);
