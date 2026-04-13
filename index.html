@@ -184,11 +184,11 @@
         }
 
         .delete-note:hover {
-            background: #dc2626;
+            background: #dd0e0e;
         }
 
         .edit-note {
-            background: #f59e0b;
+            background: #f5a30b;
             padding: 0.3rem 1rem;
             font-size: 0.7rem;
             border-radius: 1rem;
@@ -220,9 +220,9 @@
     <div class="container">
 
         <header>
-            <h1>📝📝 Quick Notes Dashboard</h1>
+            <h1> Quick Notes Dashboard</h1>
             <p>Practice <strong>DOM manipulation</strong> + <strong>BOM</strong>.</p>
-            <div class="badge">🎯🎯 Lab: BOM + DOM | pure JS</div>
+            <div class="badge"> </div>
         </header>
 
         <div class="grid">
@@ -261,8 +261,8 @@
         </div>
 
         <footer>
-            💡 BOM: confirm() on delete · alert() on empty title · resize event updates window size · prompt() to rename · Enter key to add.
-            💡 BOM: confirm() on delete · alert() on empty title · resize event updates window size · prompt() to rename · Enter key to add · screen-size category.
+             BOM: confirm() on delete  alert() on empty title  resize event updates window size  prompt() to rename  Enter key to add.
+             BOM: confirm() on delete  alert() on empty title  resize event updates window size  prompt() to rename  Enter key to add  screen-size category.
         </footer>
 
     </div>
@@ -317,7 +317,7 @@
                 actionsDiv.classList.add("note-actions");
 
                 const editBtn = document.createElement("button");
-                editBtn.textContent = "✏ Edit";
+                editBtn.textContent = " Edit";
                 editBtn.classList.add("edit-note");
                 editBtn.setAttribute("data-action", "edit");
                 editBtn.setAttribute("data-id", note.id);
@@ -349,7 +349,7 @@
         function addNote() {
             const title = titleInput.value.trim();
             if (title === "") {
-                alert("❌ Title cannot be empty!");
+                alert(" Title cannot be empty!");
                 titleInput.focus();
                 return;
             }
@@ -401,8 +401,8 @@
             const h = window.innerHeight;
             windowSizeSpan.textContent = `${w} x ${h} px`;
             let category;
-            if (w < 480) category = "📱📱 Mobile";
-            else if (w < 1024) category = "💻💻 Tablet";
+            if (w < 480) category = " Mobile";
+            else if (w < 1024) category = " Tablet";
             else category = "🖥🖥 Desktop";
             windowSizeSpan.textContent = `${w} x ${h} px (${category})`;
         }
